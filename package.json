@@ -1,7 +1,15 @@
 {
   "name": "ember-semantic-ui-dropdown",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "title": "Ember Semantic UI Drop Down ",
+  "description": "Semantic UI Dropdown for Ember applications",
+  "homepage": "http://www.semantic-ui.com",
+  "contributors": [
+    {
+      "name": "Suman Kunwar",
+      "email": "sumn2u@gmail.com"
+    }
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +19,10 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+   "repository": {
+    "type": "git",
+    "url": "git://github.com/sumn2u/ember-semantic-ui-dropdown.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -43,7 +54,8 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.5"
+    "ember-cli-babel": "^5.1.5",
+    "ember-cli-htmlbars": "^1.0.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

@@ -1,0 +1,1 @@
+export { default } from 'ember-semantic-ui-dropdown/components/ui-dropdown-array';
