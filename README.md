@@ -1,26 +1,12 @@
-# Ember-semantic-ui-dropdown
+![Semantic](http://www.semantic-ui.com/images/logo.png)
 
-This README outlines the details of collaborating on this Ember addon.
+# Ember Semantic-UI-DropDown
 
-## Installation
+This is the official Ember library for the Semantic-UI modules. 
+# Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+Include the library as an [NPM](https://www.npmjs.com/) dependency, from within an [ember-cli](http://www.ember-cli.com/) app.
 
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+```
+npm i ember-semantic-ui-dropdown
+```
