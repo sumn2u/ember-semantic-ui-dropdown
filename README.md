@@ -1,3 +1,7 @@
+
+https://travis-ci.org/sumn2u/ember-semantic-ui-dropdown.svg?branch=master
+
+
 ![Semantic](http://www.semantic-ui.com/images/logo.png)
 
 # Ember Semantic-UI-DropDown
