@@ -1,54 +1,68 @@
 /* jshint node: true */
 'use strict';
 
+var path = require('path');
+
 var defaults = {
-  css: true,
-  javascript: true,
-  fonts: true,
-  images: true
+  import: {
+    css: true,
+    javascript: true,
+    images: true,
+    fonts: true
+  },
+  source: {
+    css: 'bower_components/semantic-ui/dist',
+    javascript: 'bower_components/semantic-ui/dist',
+    images: 'bower_components/semantic-ui/dist/themes/default/assets/images',
+    fonts: 'bower_components/semantic-ui/dist/themes/default/assets/fonts'
+  },
+  destination: {
+    images: 'assets/themes/default/assets/images',
+    fonts: 'assets/themes/default/assets/fonts'
+  }
 };
 
-var getWithDefault = function(property, default_property) {
-  if (property === null || property === undefined) {
-    return default_property;
-  }
-
-  return property;
-}
+var getDefault = require('./lib/utils/get-default');
 
 module.exports = {
-   name: 'ember-semantic-ui-dropdown',
+  name: 'semantic-ui-ember',
 
   included: function (app) {
-    var options = (app && app.options['SemanticUI']) || {};
+    var options = (app && app.project.config(app.env)['SemanticUI']) || {};
 
-    if (getWithDefault(options['css'], defaults['css'])) {
+    var importCss = getDefault('import', 'css', [options, defaults]);
+    if (importCss) {
+      var sourceCss = getDefault('source', 'css', [options, defaults]);
       app.import({
-        development: 'bower_components/semantic-ui/dist/semantic.css',
-        production: 'bower_components/semantic-ui/dist/semantic.min.css'
+        development: path.join(sourceCss, 'semantic.css'),
+        production: path.join(sourceCss, 'semantic.min.css')
       });
     }
 
-    if (getWithDefault(options['javascript'], defaults['javascript'])) {
+    var importJavascript = getDefault('import', 'javascript', [options, defaults]);
+    if (importJavascript) {
+      var sourceJavascript = getDefault('source', 'javascript', [options, defaults]);
       app.import({
-        development: 'bower_components/semantic-ui/dist/semantic.js',
-        production: 'bower_components/semantic-ui/dist/semantic.min.js'
+        development: path.join(sourceJavascript, 'semantic.js'),
+        production: path.join(sourceJavascript, 'semantic.min.js')
       });
-    } else {
-
     }
 
-    if (getWithDefault(options['images'], defaults['images'])) {
-      var imageOptions = { destDir: 'assets/themes/default/assets/images' };
-      app.import('bower_components/semantic-ui/dist/themes/default/assets/images/flags.png', imageOptions);
+    var importImages = getDefault('import', 'images', [options, defaults]);
+    if (importImages) {
+      var sourceImage = getDefault('source', 'images', [options, defaults]);
+      var imageOptions = { destDir: getDefault('destination', 'images', [options, defaults]) };
+      app.import(path.join(sourceImage, 'flags.png'), imageOptions);
     }
 
-    if (getWithDefault(options['fonts'], defaults['fonts'])) {
+    var importFonts = getDefault('import', 'fonts', [options, defaults]);
+    if (importFonts) {
       var fontExtensions = ['.eot','.otf','.svg','.ttf','.woff','.woff2'];
-      var fontOptions = { destDir: 'assets/themes/default/assets/fonts' };
+      var sourceFont = getDefault('source', 'fonts', [options, defaults]);
+      var fontOptions = { destDir: getDefault('destination', 'fonts', [options, defaults]) };
       for (var i = fontExtensions.length - 1; i >= 0; i--) {
-        app.import('bower_components/semantic-ui/dist/themes/default/assets/fonts/icons'+fontExtensions[i], fontOptions);
-      };
+        app.import(path.join(sourceFont, 'icons' + fontExtensions[i]), fontOptions);
+      }
     }
   }
 };

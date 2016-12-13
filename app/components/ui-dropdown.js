@@ -1,1 +1,1 @@
-export { default } from 'ember-semantic-ui-dropdown/components/ui-dropdown';
+export { default } from 'semantic-ui-ember/components/ui-dropdown';
